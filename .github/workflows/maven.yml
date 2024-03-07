@@ -45,5 +45,5 @@ jobs:
       run: aws deploy create-deployment
           --application-name api.example.co.kr
           --deployment-config-name CodeDeployDefault.OneAtATime
-          --deployment-group-name api.example.co.kr.group
+          --deployment-group-name production.group
           --s3-location bucket=mybucket202010034.bucket,bundleType=zip,key=ROOT.zip
