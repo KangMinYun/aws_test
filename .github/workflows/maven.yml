@@ -45,5 +45,5 @@ jobs:
       run: aws deploy create-deployment
           --application-name MyApp
           --deployment-config-name CodeDeployDefault.OneAtATime
-          --deployment-group-name production.group
+          --deployment-group-name production
           --s3-location bucket=mybucket202010034.bucket,bundleType=zip,key=ROOT.zip
