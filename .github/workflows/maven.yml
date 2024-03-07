@@ -29,4 +29,21 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Archive ROOT.war to ROOT.zip
+      run: zip -j ./ROOT.zip /home/runner/work/api.example.co.kr/api.example.co.kr/target/ROOT.war ./appspec.yml
+    - name: Access to AWS
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: ap-northeast-2
 
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./ROOT.zip s3://mybucket202010034/ROOT.zip   
+
+    - name: Deploy with AWS CodeDeploy
+      run: aws deploy create-deployment
+          --application-name api.example.co.kr
+          --deployment-config-name CodeDeployDefault.OneAtATime
+          --deployment-group-name api.example.co.kr.group
+          --s3-location bucket=api.example.co.kr.bucket,bundleType=zip,key=ROOT.zip
