@@ -46,4 +46,4 @@ jobs:
           --application-name MyApp
           --deployment-config-name CodeDeployDefault.OneAtATime
           --deployment-group-name production
-          --s3-location bucket=mybucket202010034.bucket,bundleType=zip,key=ROOT.zip
+          --s3-location bucket=mybucket202010034,bundleType=zip,key=ROOT.zip
