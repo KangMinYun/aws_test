@@ -43,7 +43,7 @@ jobs:
 
     - name: Deploy with AWS CodeDeploy
       run: aws deploy create-deployment
-          --application-name api.example.co.kr
+          --application-name MyApp
           --deployment-config-name CodeDeployDefault.OneAtATime
           --deployment-group-name production.group
           --s3-location bucket=mybucket202010034.bucket,bundleType=zip,key=ROOT.zip
